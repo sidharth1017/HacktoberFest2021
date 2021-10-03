@@ -13,8 +13,7 @@ https://hacktoberfest.digitalocean.com/</p>
 
 ### What can You contribute ⚠️ 
 * There are language Specific folders in the repository choose any you're comfortable with if not, make one.
-* Inside the language folder there will be multiple topic folders like Data Structures, Algorithms, Problems and projects.
-* Contribute any algorithm, data-structure implementation or your favourite problmes or projects.
+* You can contribute any thing you like any algorithm, any favourite code, Project etc to this repository.
 * Make sure your follow the below steps.
 -----
 
@@ -30,22 +29,9 @@ https://hacktoberfest.digitalocean.com/</p>
 ```markdown
 git clone https://github.com/your-username/HacktoberFest2021.git
 ```
-* change the present working directory
-```markdown
-cd HacktoberFest2021
-```
-* Add/Create your project to the specific folder as described in what you can contribute section.
-* Make a new branch
-```markdown
-git checkout -b branch-name
-```
+* Write your code.
+* Make a new branch.
 * Make change in the repository with the new branch.
-* push the changes.
-```markdown
-git add .
-git commit -m "Your commit Message"
-git push origin branch-name
-```
 * Make a pull request.
 * Star the repository.
 
