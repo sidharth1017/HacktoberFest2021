@@ -1,0 +1,75 @@
+/*
+ * This is a calculator that uses method to calculate solutions to problems.
+ * This solves for area, volume, and circumference of a sphere with user input
+ */
+import java.util.*;
+import java.lang.Math;
+import java.text.DecimalFormat;
+public class A03 {
+    //Method to calculate Surface area of a sphere
+    public static double SurfaceAreaOfSphere(double r){
+        //Calculates Surface Area with equation
+        double surfaceArea=4*Math.PI*Math.pow(r,2);
+        //return surface area
+        return surfaceArea;
+    }
+
+    //Method to calculate volume of a sphere
+    public static double VolumeOfASphere(double r){
+        //Calculates Volume
+        double volume=4*Math.PI*Math.pow(r,3)/3;
+        //return volume
+        return volume;
+    }
+
+    //Method to calculate Area of a circle
+    public static double AreaOfCircle(double r){
+        //Calculates Area
+        double area=Math.PI*Math.pow(r,2);
+        //return area
+        return area;
+    }
+
+    //Method to calculate circumference of a sphere
+    public static double CircumferenceOfACircle(double r){
+        //Calculates Circumference
+        double circumference=2*Math.PI*r;
+        //return circumference
+        return circumference;
+    }
+    //Main method
+    public static void main (String args[]){
+        //Create Scanner
+        Scanner in=new Scanner(System.in);
+        DecimalFormat df = new DecimalFormat("#.###");//Create decimal formatter
+        //Create Variables
+        int continueCalc=1;
+        int whichCalculation;
+        double radius;
+        double surfaceArea;
+        double volume;
+        double area;
+        double circimference;
+
+        //Loops program
+        while (continueCalc==1){
+            System.out.print("Please enter a radius(cm):");
+            radius=in.nextDouble();
+
+            System.out.println("Radius:"+radius+"cm");
+
+            //Prints results
+            System.out.println("The area of a Sphere with radius of "+radius+"cm: "+ df.format(SurfaceAreaOfSphere(radius)) +" cm^2");
+            System.out.println("The volume of a Sphere with radius of "+radius+"cm: "+df.format(VolumeOfASphere(radius))+"cm^3");
+            System.out.println("The area of a circle with radius of "+radius+"cm: "+df.format(AreaOfCircle(radius))+"cm^2");
+            System.out.println("The circumference of a circle with radius of  "+radius+"cm: "+df.format(CircumferenceOfACircle(radius))+"cm");
+
+
+            //Prints if user wants to continue and asks for input
+            System.out.print("Would you like to continue calculation(1=Yes 2=No):");
+            continueCalc=in.nextInt();
+        }
+        //Prints exit greeting
+        System.out.println("Thank you have a nice day");
+    }
+}
