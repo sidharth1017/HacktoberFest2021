@@ -1,0 +1,24 @@
+import java.util.*;
+
+public class ques1 {
+    public static  Queue reverse(Queue que){
+        if(que.isEmpty()){
+            return que;
+        }
+        int val=que.dequeue();
+        reverse(que);
+        que.enqueue(val);
+        return que;
+    }
+
+    public static void main(String[] args) {
+        Queue que=new Queue();
+        que.enqueue(1);
+        que.enqueue(2);
+        que.enqueue(3);
+        que.enqueue(4);
+        reverse(que);
+        que.print();
+
+    }
+}
