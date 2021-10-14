@@ -1,0 +1,12 @@
+import time
+import webbrowser
+set_alarm = input("set the website alarm as H:N:S(all in two digits):")
+url = input("Enter the website you want to open: ")
+Actual_time = time.strftime("%I:%H:%S")
+while(Actual_time != set_ararm):
+  print("The time is "+ Actual_time)
+  Actual_time= time.strftime("%I:%H:%S")
+  time.sleep(1)
+if(Actual_time == set_alarm):
+  print("you shout see your webpage now :-)")
+  webbrowser.open(url)
