@@ -1,6 +1,6 @@
 <html>
 
-  <body>
+  <body style="background-color:burlywood;">
   
     <h1>
       Hello World!
