@@ -1,0 +1,17 @@
+import java.util.Scanner;
+public class _2LoanCalculator {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter the amount");
+		int amount = scanner.nextInt();
+		
+		int months;
+		for(months=6; months>0; months--) {
+			amount=amount*90/100;
+		}
+		System.out.println(amount);
+		
+	}
+
+}

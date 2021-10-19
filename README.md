@@ -13,7 +13,7 @@ https://hacktoberfest.digitalocean.com/</p>
 
 ### What can You contribute ⚠️ 
 * There are language Specific folders in the repository choose any you're comfortable with if not, make one.
-* You can contribute any thing you like any algorithm, any favourite code, Project etc to this repository.
+* You can contribute any thing you like any algorithm, any favourite code, Project etc. to this repository.
 * Make sure your follow the below steps.
 -----
 
