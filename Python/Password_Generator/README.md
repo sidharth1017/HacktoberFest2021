@@ -11,11 +11,11 @@ This code generates a random password from a set as mentioned above.
 
 - Clone the Repository
 ```bash
-git clone https://github.com/Rakshita2604/Python-Projects
+git clone https://github.com/Rakshita2604/HacktoberFest2021
 ```
 - Navigate to the folder
 ```bash
-cd Python-Projects
+cd git
 cd Python
 cd "Password_Generator"
 ```
