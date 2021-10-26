@@ -11,9 +11,9 @@ def divide(P, Q):
    # This function is used for dividing two numbers    
    return P / Q    
 
-def modulus(P, Q):   
+def modulus(a, b):   
    # This function is used for dividing two numbers    
-   return P % Q   
+   return a % b   
 # Now we will take inputs from the user    
 print ("Please select the operation.")    
 print ("a. Add")    
@@ -37,7 +37,9 @@ elif choice == 'c':
    print (num1, " * ", num2, " = ", multiply(num1, num2))    
 elif choice == 'd':    
    print (num_1, " / ", num_2, " = ", divide(num_1, num_2)) 
-elif choice == 'e':    
+   
+   #added modulus operation
+elif choice == 'f':    
    print (num_1, " % ", num_2, " = ", modulus(num_1, num_2))
 else:    
    print ("This is an invalid input")    
