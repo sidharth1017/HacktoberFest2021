@@ -13,6 +13,7 @@ total = subject_1 + subject_2 + subject_3 + subject_4 + subject_5
 average = total / 5.0
 percentage = (total / 500.0) * 100
 
+# Checking the conditions for grade according to the average.
 if average >= 90:
     grade = 'A'
 elif average >= 80 and average < 90:
