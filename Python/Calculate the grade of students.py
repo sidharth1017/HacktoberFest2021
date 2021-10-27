@@ -1,4 +1,5 @@
 print("Enter the marks of five subjects::")
+print("Press enter once you add marks of one subject.")
 
 subject_1 = float (input ())
 subject_2 = float (input ())
@@ -30,3 +31,5 @@ print ("\nThe Total marks is:   \t", total, "/ 500.00")
 print ("\nThe Average marks is: \t", average)
 print ("\nThe Percentage is:    \t", percentage, "%")
 print ("\nThe Grade is:         \t", grade)
+
+# End of program.
