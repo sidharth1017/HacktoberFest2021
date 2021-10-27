@@ -1,4 +1,5 @@
 print("Enter the marks of five subjects::")
+print("Press enter once you add marks of one subject.")
 
 subject_1 = float (input ())
 subject_2 = float (input ())
@@ -13,6 +14,7 @@ total = subject_1 + subject_2 + subject_3 + subject_4 + subject_5
 average = total / 5.0
 percentage = (total / 500.0) * 100
 
+# Checking the conditions for grade according to the average.
 if average >= 90:
     grade = 'A'
 elif average >= 80 and average < 90:
@@ -29,3 +31,5 @@ print ("\nThe Total marks is:   \t", total, "/ 500.00")
 print ("\nThe Average marks is: \t", average)
 print ("\nThe Percentage is:    \t", percentage, "%")
 print ("\nThe Grade is:         \t", grade)
+
+# End of program.
