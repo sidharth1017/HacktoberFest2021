@@ -10,12 +10,17 @@ def multiply(P, Q):
 def divide(P, Q):   
    # This function is used for dividing two numbers    
    return P / Q    
+
+def modulus(a, b):   
+   # This function is used for dividing two numbers    
+   return a % b   
 # Now we will take inputs from the user    
 print ("Please select the operation.")    
 print ("a. Add")    
 print ("b. Subtract")    
 print ("c. Multiply")    
-print ("d. Divide")    
+print ("d. Divide") 
+print ("e. Modulus")
     
 choice = input("Please enter choice (a/ b/ c/ d): ")    
     
@@ -31,6 +36,10 @@ elif choice == 'b':
 elif choice == 'c':    
    print (num1, " * ", num2, " = ", multiply(num1, num2))    
 elif choice == 'd':    
-   print (num_1, " / ", num_2, " = ", divide(num_1, num_2))    
+   print (num_1, " / ", num_2, " = ", divide(num_1, num_2)) 
+   
+   #added modulus operation
+elif choice == 'f':    
+   print (num_1, " % ", num_2, " = ", modulus(num_1, num_2))
 else:    
    print ("This is an invalid input")    
