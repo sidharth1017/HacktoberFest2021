@@ -10,7 +10,7 @@ bmi = weight/(height**2)
 
 print("Your BMI is: {0} and you are: ".format(bmi), end='')
 
-#conditions
+#conditions for bmi
 if ( bmi < 16):
    print("severely underweight")
 
