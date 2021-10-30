@@ -1,36 +1,59 @@
-import random #Importing random library
-import numpy as np #importing numpy as np
-s1={0,1,2,3,4,5,6,7,8,9} #Initialising a set for digits
-s2={'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'} #Initialising a set for small letters
-s3={'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'} #Initialising a set for capital letters
-s4={'!','@','#','$','%','^','&','*'} #Initialising a set for symbols
-#Concatenating the sets into s
-s = s1.union(s2)
-s = s.union(s3)
-s = s.union(s4)
-#Converting into list
-s1=list(s1)
-s2=list(s2)
-s3=list(s3)
-s4=list(s4)
-s=list(s)
-pass_w=list()
-#Generating random password into pass_w
-pass_w.append(random.choice(s1))
-pass_w.append(random.choice(s2))
-pass_w.append(random.choice(s3))
-pass_w.append(random.choice(s4))
-n=int(input())
-#Checking whether the length of the password is long enough
-if(n<4):
-    print("Length is too short!")
-else:
-    for i in range(n-4):
-        pass_w.append(random.choice(s))
-#Assigning ans as numpy
-ans=np.array(pass_w)
-np.random.shuffle(ans)
-#Displaying the password
-for i in ans:
-    print(i,end="")
-print()
+import random
+import array
+
+# maximum length of password needed
+# this can be changed to suit your password length
+MAX_LEN = 12
+
+# declare arrays of the character that we need in out password
+# Represented as chars to enable easy string concatenation
+DIGITS = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+LOCASE_CHARACTERS = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
+					'i', 'j', 'k', 'm', 'n', 'o', 'p', 'q',
+					'r', 's', 't', 'u', 'v', 'w', 'x', 'y',
+					'z']
+
+UPCASE_CHARACTERS = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H',
+					'I', 'J', 'K', 'M', 'N', 'O', 'p', 'Q',
+					'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y',
+					'Z']
+
+SYMBOLS = ['@', '#', '$', '%', '=', ':', '?', '.', '/', '|', '~', '>',
+		'*', '(', ')', '<']
+
+# combines all the character arrays above to form one array
+COMBINED_LIST = DIGITS + UPCASE_CHARACTERS + LOCASE_CHARACTERS + SYMBOLS
+
+# randomly select at least one character from each character set above
+rand_digit = random.choice(DIGITS)
+rand_upper = random.choice(UPCASE_CHARACTERS)
+rand_lower = random.choice(LOCASE_CHARACTERS)
+rand_symbol = random.choice(SYMBOLS)
+
+# combine the character randomly selected above
+# at this stage, the password contains only 4 characters but
+# we want a 12-character password
+temp_pass = rand_digit + rand_upper + rand_lower + rand_symbol
+
+
+# now that we are sure we have at least one character from each
+# set of characters, we fill the rest of
+# the password length by selecting randomly from the combined
+# list of character above.
+for x in range(MAX_LEN - 4):
+	temp_pass = temp_pass + random.choice(COMBINED_LIST)
+
+	# convert temporary password into array and shuffle to
+	# prevent it from having a consistent pattern
+	# where the beginning of the password is predictable
+	temp_pass_list = array.array('u', temp_pass)
+	random.shuffle(temp_pass_list)
+
+# traverse the temporary password array and append the chars
+# to form the password
+password = ""
+for x in temp_pass_list:
+		password = password + x
+		
+# print out password
+print(password)
