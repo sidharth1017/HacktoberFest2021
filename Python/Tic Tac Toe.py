@@ -1,212 +1,277 @@
-# Tic-Tac-Toe Game in Python using GUI.
-
 from tkinter import *
-import numpy as np
+import tkinter.messagebox as msg
 
-size_of_board = 600
-symbol_size = (size_of_board / 3 - size_of_board / 8) / 2
-symbol_thickness = 50
-symbol_X_color = '#EE4035'
-symbol_O_color = '#0492CF'
-Green_color = '#7BC043'
+root= Tk()
+root.title('TIC-TAC-TOE---Project Gurukul')
+#labels
+Label(root,text="player1 : X",font="times 15").grid(row=0,column=1)
+Label(root,text="player2 : O",font="times 15").grid(row=0,column=2)
+
+digits = [1,2,3,4,5,6,7,8,9]
+
+#for player1 sign = X and for player2 sign= Y
+mark = ''
+
+#counting the no. of click
+count = 0
 
 
-class Tic_Tac_Toe():
-    # ------------------------------------------------------------------
-    # Initialization Functions:
-    # ------------------------------------------------------------------
-    def __init__(self):
-        self.window = Tk()
-        self.window.title('Tic-Tac-Toe')
-        self.canvas = Canvas(self.window, width=size_of_board, height=size_of_board)
-        self.canvas.pack()
-        # Input from user in form of clicks
-        self.window.bind('<Button-1>', self.click)
+panels = ["panel"]*10
 
-        self.initialize_board()
-        self.player_X_turns = True
-        self.board_status = np.zeros(shape=(3, 3))
 
-        self.player_X_starts = True
-        self.reset_board = False
-        self.gameover = False
-        self.tie = False
-        self.X_wins = False
-        self.O_wins = False
+def win(panels,sign):
+    return ((panels[1] == panels[2] == panels [3] == sign)
+            or (panels[1] == panels[4] == panels [7] == sign)
+            or (panels[1] == panels[5] == panels [9] == sign)
+            or (panels[2] == panels[5] == panels [8] == sign)
+            or (panels[3] == panels[6] == panels [9] == sign)
+            or (panels[3] == panels[5] == panels [7] == sign)
+            or (panels[4] == panels[5] == panels [6] == sign) 
+            or (panels[7] == panels[8] == panels [9] == sign))
 
-        self.X_score = 0
-        self.O_score = 0
-        self.tie_score = 0
+def checker(digit):
+    global count, mark, digits
 
-    def mainloop(self):
-        self.window.mainloop()
+    #Check which button clicked 
+    
+    if digit==1 and digit in digits:
+        digits.remove(digit)
+##player1 will play if the value of count is even and for odd player2 will play
+        if count%2==0:
+            mark ='X'
+            panels[digit]=mark
+        elif count%2!=0:
+            mark = 'O'
+            panels[digit]=mark
 
-    def initialize_board(self):
-        for i in range(2):
-            self.canvas.create_line((i + 1) * size_of_board / 3, 0, (i + 1) * size_of_board / 3, size_of_board)
+        button1.config(text = mark)
+        count = count+1
+        sign = mark
 
-        for i in range(2):
-            self.canvas.create_line(0, (i + 1) * size_of_board / 3, size_of_board, (i + 1) * size_of_board / 3)
+        if(win(panels,sign) and sign=='X'):
+            msg.showinfo("Result","Player1 wins")
+            root.destroy()
+        elif(win(panels,sign) and sign=='O'):
+            msg.showinfo("Result","Player2 wins")
+            root.destroy()
 
-    def play_again(self):
-        self.initialize_board()
-        self.player_X_starts = not self.player_X_starts
-        self.player_X_turns = self.player_X_starts
-        self.board_status = np.zeros(shape=(3, 3))
+    if digit==2 and digit in digits:
+        digits.remove(digit)
 
-    # ------------------------------------------------------------------
-    # Drawing Functions:
-    # The modules required to draw required game based object on canvas
-    # ------------------------------------------------------------------
+        if count%2==0:
+            mark ='X'
+            panels[digit]=mark
+        elif count%2!=0:
+            mark = 'O'
+            panels[digit]=mark
 
-    def draw_O(self, logical_position):
-        logical_position = np.array(logical_position)
-        # logical_position = grid value on the board
-        # grid_position = actual pixel values of the center of the grid
-        grid_position = self.convert_logical_to_grid_position(logical_position)
-        self.canvas.create_oval(grid_position[0] - symbol_size, grid_position[1] - symbol_size,
-                                grid_position[0] + symbol_size, grid_position[1] + symbol_size, width=symbol_thickness,
-                                outline=symbol_O_color)
+        button2.config(text = mark)
+        count = count+1
+        sign = mark
 
-    def draw_X(self, logical_position):
-        grid_position = self.convert_logical_to_grid_position(logical_position)
-        self.canvas.create_line(grid_position[0] - symbol_size, grid_position[1] - symbol_size,
-                                grid_position[0] + symbol_size, grid_position[1] + symbol_size, width=symbol_thickness,
-                                fill=symbol_X_color)
-        self.canvas.create_line(grid_position[0] - symbol_size, grid_position[1] + symbol_size,
-                                grid_position[0] + symbol_size, grid_position[1] - symbol_size, width=symbol_thickness,
-                                fill=symbol_X_color)
+        if(win(panels,sign) and sign=='X'):
+            msg.showinfo("Result","Player1 wins")
+            root.destroy()
+        elif(win(panels,sign) and sign=='O'):
+            msg.showinfo("Result","Player2 wins")
+            root.destroy()
 
-    def display_gameover(self):
 
-        if self.X_wins:
-            self.X_score += 1
-            text = 'Winner: Player 1 (X)'
-            color = symbol_X_color
-        elif self.O_wins:
-            self.O_score += 1
-            text = 'Winner: Player 2 (O)'
-            color = symbol_O_color
-        else:
-            self.tie_score += 1
-            text = 'Its a tie'
-            color = 'gray'
+    if digit==3 and digit in digits:
+        digits.remove(digit)
 
-        self.canvas.delete("all")
-        self.canvas.create_text(size_of_board / 2, size_of_board / 3, font="cmr 60 bold", fill=color, text=text)
+        if count%2==0:
+            mark ='X'
+            panels[digit]=mark
+        elif count%2!=0:
+            mark = 'O'
+            panels[digit]=mark
 
-        score_text = 'Scores \n'
-        self.canvas.create_text(size_of_board / 2, 5 * size_of_board / 8, font="cmr 40 bold", fill=Green_color,
-                                text=score_text)
+        button3.config(text = mark)
+        count = count+1
+        sign = mark
 
-        score_text = 'Player 1 (X) : ' + str(self.X_score) + '\n'
-        score_text += 'Player 2 (O): ' + str(self.O_score) + '\n'
-        score_text += 'Tie                    : ' + str(self.tie_score)
-        self.canvas.create_text(size_of_board / 2, 3 * size_of_board / 4, font="cmr 30 bold", fill=Green_color,
-                                text=score_text)
-        self.reset_board = True
+        if(win(panels,sign) and sign=='X'):
+            msg.showinfo("Result","Player1 wins")
+            root.destroy()
+        elif(win(panels,sign) and sign=='O'):
+            msg.showinfo("Result","Player2 wins")
+            root.destroy()
 
-        score_text = 'Click to play again \n'
-        self.canvas.create_text(size_of_board / 2, 15 * size_of_board / 16, font="cmr 20 bold", fill="gray",
-                                text=score_text)
 
-    # ------------------------------------------------------------------
-    # Logical Functions:
-    # The modules required to carry out game logic
-    # ------------------------------------------------------------------
+            
+    if digit==4 and digit in digits:
+        digits.remove(digit)
 
-    def convert_logical_to_grid_position(self, logical_position):
-        logical_position = np.array(logical_position, dtype=int)
-        return (size_of_board / 3) * logical_position + size_of_board / 6
+        if count%2==0:
+            mark ='X'
+            panels[digit]=mark
+        elif count%2!=0:
+            mark = 'O'
+            panels[digit]=mark
 
-    def convert_grid_to_logical_position(self, grid_position):
-        grid_position = np.array(grid_position)
-        return np.array(grid_position // (size_of_board / 3), dtype=int)
+        button4.config(text = mark)
+        count = count+1
+        sign = mark
 
-    def is_grid_occupied(self, logical_position):
-        if self.board_status[logical_position[0]][logical_position[1]] == 0:
-            return False
-        else:
-            return True
-
-    def is_winner(self, player):
-
-        player = -1 if player == 'X' else 1
-
-        # Three in a row
-        for i in range(3):
-            if self.board_status[i][0] == self.board_status[i][1] == self.board_status[i][2] == player:
-                return True
-            if self.board_status[0][i] == self.board_status[1][i] == self.board_status[2][i] == player:
-                return True
-
-        # Diagonals
-        if self.board_status[0][0] == self.board_status[1][1] == self.board_status[2][2] == player:
-            return True
-
-        if self.board_status[0][2] == self.board_status[1][1] == self.board_status[2][0] == player:
-            return True
-
-        return False
-
-    def is_tie(self):
-
-        r, c = np.where(self.board_status == 0)
-        tie = False
-        if len(r) == 0:
-            tie = True
-
-        return tie
-
-    def is_gameover(self):
-        # Either someone wins or all grid occupied
-        self.X_wins = self.is_winner('X')
-        if not self.X_wins:
-            self.O_wins = self.is_winner('O')
-
-        if not self.O_wins:
-            self.tie = self.is_tie()
-
-        gameover = self.X_wins or self.O_wins or self.tie
-
-        if self.X_wins:
-            print('X wins')
-        if self.O_wins:
-            print('O wins')
-        if self.tie:
-            print('Its a tie')
-
-        return gameover
+        if(win(panels,sign) and sign=='X'):
+            msg.showinfo("Result","Player1 wins")
+            root.destroy()
+        elif(win(panels,sign) and sign=='O'):
+            msg.showinfo("Result","Player2 wins")
+            root.destroy()
 
 
 
+    if digit==5 and digit in digits:
+        digits.remove(digit)
+
+        if count%2==0:
+            mark ='X'
+            panels[digit]=mark
+        elif count%2!=0:
+            mark = 'O'
+            panels[digit]=mark
+
+        button5.config(text = mark)
+        count = count+1
+        sign = mark
+
+        if(win(panels,sign) and sign=='X'):
+            msg.showinfo("Result","Player1 wins")
+            root.destroy()
+        elif(win(panels,sign) and sign=='O'):
+            msg.showinfo("Result","Player2 wins")
+            root.destroy()
 
 
-    def click(self, event):
-        grid_position = [event.x, event.y]
-        logical_position = self.convert_grid_to_logical_position(grid_position)
+    if digit==6 and digit in digits:
+        digits.remove(digit)
 
-        if not self.reset_board:
-            if self.player_X_turns:
-                if not self.is_grid_occupied(logical_position):
-                    self.draw_X(logical_position)
-                    self.board_status[logical_position[0]][logical_position[1]] = -1
-                    self.player_X_turns = not self.player_X_turns
-            else:
-                if not self.is_grid_occupied(logical_position):
-                    self.draw_O(logical_position)
-                    self.board_status[logical_position[0]][logical_position[1]] = 1
-                    self.player_X_turns = not self.player_X_turns
+        if count%2==0:
+            mark ='X'
+            panels[digit]=mark
+        elif count%2!=0:
+            mark = 'O'
+            panels[digit]=mark
 
-            # Check if game is concluded
-            if self.is_gameover():
-                self.display_gameover()
-                # print('Done')
-        else:  # Play Again
-            self.canvas.delete("all")
-            self.play_again()
-            self.reset_board = False
+        button6.config(text = mark)
+        count = count+1
+        sign = mark
+
+        if(win(panels,sign) and sign=='X'):
+            msg.showinfo("Result","Player1 wins")
+            root.destroy()
+        elif(win(panels,sign) and sign=='O'):
+            msg.showinfo("Result","Player2 wins")
+            root.destroy()
 
 
-game_instance = Tic_Tac_Toe()
-game_instance.mainloop()
+    if digit==7 and digit in digits:
+        digits.remove(digit)
+
+        if count%2==0:
+            mark ='X'
+            panels[digit]=mark
+        elif count%2!=0:
+            mark = 'O'
+            panels[digit]=mark
+
+        button7.config(text = mark)
+        count = count+1
+        sign = mark
+
+        if(win(panels,sign) and sign=='X'):
+            msg.showinfo("Result","Player1 wins")
+            root.destroy()
+        elif(win(panels,sign) and sign=='O'):
+            msg.showinfo("Result","Player2 wins")
+            root.destroy()
+
+
+    if digit==8 and digit in digits:
+        digits.remove(digit)
+
+        if count%2==0:
+            mark ='X'
+            panels[digit]=mark
+        elif count%2!=0:
+            mark = 'O'
+            panels[digit]=mark
+
+        button8.config(text = mark)
+        count = count+1
+        sign = mark
+
+        if(win(panels,sign) and sign=='X'):
+            msg.showinfo("Result","Player1 wins")
+            root.destroy()
+        elif(win(panels,sign) and sign=='O'):
+            msg.showinfo("Result","Player2 wins")
+            root.destroy()
+
+
+    if digit==9 and digit in digits:
+        digits.remove(digit)
+
+        if count%2==0:
+            mark ='X'
+            panels[digit]=mark
+        elif count%2!=0:
+            mark = 'O'
+            panels[digit]=mark
+
+        button9.config(text = mark)
+        count = count+1
+        sign = mark
+
+        if(win(panels,sign) and sign=='X'):
+            msg.showinfo("Result","Player1 wins")
+            root.destroy()
+        elif(win(panels,sign) and sign=='O'):
+            msg.showinfo("Result","Player2 wins")
+            root.destroy()
+
+
+ ###if count is greater then 8 then the match has been tied   
+    if(count>8 and win(panels,'X')==False and win(panels,'O')==False):
+        msg.showinfo("Result","Match Tied")
+        root.destroy()
+        
+
+
+
+
+
+####define buttons
+button1=Button(root,width=15,font=('Times 16 bold'),height=7,command=lambda:checker(1))
+button1.grid(row=1,column=1)
+button2=Button(root,width=15,height=7,font=('Times 16 bold'),command=lambda:checker(2))
+button2.grid(row=1,column=2)
+button3=Button(root,width=15,height=7,font=('Times 16 bold'),command=lambda: checker(3))
+button3.grid(row=1,column=3)
+button4=Button(root,width=15,height=7,font=('Times 16 bold'),command=lambda: checker(4))
+button4.grid(row=2,column=1)
+button5=Button(root,width=15,height=7,font=('Times 16 bold'),command=lambda: checker(5))
+button5.grid(row=2,column=2)
+button6=Button(root,width=15,height=7,font=('Times 16 bold'),command=lambda: checker(6))
+button6.grid(row=2,column=3)
+button7=Button(root,width=15,height=7,font=('Times 16 bold'),command=lambda: checker(7))
+button7.grid(row=3,column=1)
+button8=Button(root,width=15,height=7,font=('Times 16 bold'),command=lambda: checker(8))
+button8.grid(row=3,column=2)
+button9=Button(root,width=15,height=7,font=('Times 16 bold'),command=lambda: checker(9))
+button9.grid(row=3,column=3)
+
+
+
+
+root.mainloop()
+
+
+      
+            
+            
+            
+
+    
