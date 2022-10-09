@@ -1,13 +1,3 @@
-<html>
+<h1>A Simple Calculator</h1>
 
-  <body style="background-color:burlywood;">
-  
-    <h1>
-      Hello World!
-    </h1>
-    
-    
-  </body>
-
-
-</html>
+<p>Now you can perform all your calculations in the browser </p>
